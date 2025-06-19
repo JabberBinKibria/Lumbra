@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://onxttw62gwov"]
+
+[ext_resource type="FontFile" uid="uid://bo1s2d1ywvpc1" path="res://assets/Fonts/bleeding_cowboys/Bleeding_Cowboys.ttf" id="1_wiapx"]
+[ext_resource type="Script" path="res://scripts/GO_BACK_BTN.gd" id="2_vbrkf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_jw3cb"]
+
+[node name="How_to_play" type="Node2D"]
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_right = 1888.0
+offset_bottom = 977.0
+color = Color(0.027451, 0.0784314, 0.121569, 1)
+
+[node name="Label" type="Label" parent="."]
+offset_left = 381.0
+offset_top = 150.0
+offset_right = 1538.0
+offset_bottom = 640.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_wiapx")
+theme_override_font_sizes/font_size = 219
+text = "Instructions"
+
+[node name="GO_BACK_BTN" type="Button" parent="."]
+offset_left = 1643.0
+offset_top = 799.0
+offset_right = 1929.0
+offset_bottom = 1014.0
+theme_override_colors/font_hover_color = Color(0.815686, 0.894118, 0.933333, 1)
+theme_override_fonts/font = ExtResource("1_wiapx")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_jw3cb")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_jw3cb")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_jw3cb")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_jw3cb")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_jw3cb")
+text = "EXIT"
+script = ExtResource("2_vbrkf")
+
+[connection signal="pressed" from="GO_BACK_BTN" to="GO_BACK_BTN" method="_on_pressed"]

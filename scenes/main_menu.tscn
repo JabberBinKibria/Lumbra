@@ -1,0 +1,65 @@
+[gd_scene load_steps=5 format=3 uid="uid://b5usb058r08im"]
+
+[ext_resource type="FontFile" uid="uid://bo1s2d1ywvpc1" path="res://assets/Fonts/bleeding_cowboys/Bleeding_Cowboys.ttf" id="1_44fvy"]
+[ext_resource type="Script" path="res://scripts/how_to_play_btn.gd" id="3_11e77"]
+[ext_resource type="Script" path="res://scripts/START_Button.gd" id="3_eih4u"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f63wr"]
+
+[node name="main_menu" type="Node2D"]
+position = Vector2(935, 455)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.027451, 0.0784314, 0.121569, 1)
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_left = 498.0
+offset_top = 65.0
+offset_right = 1325.0
+offset_bottom = 555.0
+size_flags_horizontal = 4
+theme_override_fonts/font = ExtResource("1_44fvy")
+theme_override_font_sizes/font_size = 219
+text = "LUMBRA"
+
+[node name="start_button" type="Button" parent="CanvasLayer"]
+offset_left = 795.0
+offset_top = 465.0
+offset_right = 1081.0
+offset_bottom = 680.0
+theme_override_colors/font_hover_color = Color(0.815686, 0.894118, 0.933333, 1)
+theme_override_fonts/font = ExtResource("1_44fvy")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f63wr")
+text = "START"
+script = ExtResource("3_eih4u")
+
+[node name="how_to_play_btn" type="Button" parent="CanvasLayer"]
+offset_left = 618.0
+offset_top = 639.0
+offset_right = 1250.0
+offset_bottom = 854.0
+theme_override_colors/font_hover_color = Color(0.815686, 0.894118, 0.933333, 1)
+theme_override_fonts/font = ExtResource("1_44fvy")
+theme_override_font_sizes/font_size = 50
+theme_override_styles/normal = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/hover = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/pressed = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_f63wr")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_f63wr")
+text = "HOW TO PLAY"
+script = ExtResource("3_11e77")
+
+[connection signal="pressed" from="CanvasLayer/start_button" to="CanvasLayer/start_button" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/how_to_play_btn" to="CanvasLayer/how_to_play_btn" method="_on_pressed"]
