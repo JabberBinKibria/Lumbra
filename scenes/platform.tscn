@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cuu0sc0n26nby"]
+
+[ext_resource type="Script" path="res://scripts/platform.gd" id="1_11oyx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q1yyi"]
+radius = 60.0333
+
+[node name="platform" type="StaticBody2D" groups=["dropable"]]
+scale = Vector2(0.75, 0.75)
+script = ExtResource("1_11oyx")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+offset_left = -64.0
+offset_top = -64.0
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_q1yyi")

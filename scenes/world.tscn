@@ -1,3 +1,118 @@
-[gd_scene format=3 uid="uid://cnmt8bvjf68ko"]
+[gd_scene load_steps=6 format=3 uid="uid://cnmt8bvjf68ko"]
+
+[ext_resource type="PackedScene" uid="uid://b7si5hjti7bgd" path="res://scenes/card_01.tscn" id="1_lyp80"]
+[ext_resource type="PackedScene" uid="uid://cuu0sc0n26nby" path="res://scenes/platform.tscn" id="2_ri4sp"]
+[ext_resource type="Shader" path="res://scripts/worldBackground.gdshader" id="3_11e86"]
+[ext_resource type="Texture2D" uid="uid://d3kqc82iusuo" path="res://assets/backgroundSpace_01.1.png" id="3_kx0dm"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_60a17"]
+shader = ExtResource("3_11e86")
+shader_parameter/color = Color(0, 0.447059, 0.890196, 1)
+shader_parameter/frequency = 1.0
+shader_parameter/compress = 1.0
+shader_parameter/add_light = 0.0
+shader_parameter/scale = 1.0
+shader_parameter/speed = 0.279978
+shader_parameter/x_angle = 1.57
+shader_parameter/y_angle = 1.57
+shader_parameter/base_alpha = 0.8
+shader_parameter/refraction_ratio = 10.0
+shader_parameter/clear = 0.0
+shader_parameter/surf_sinpowder = 8.0
+shader_parameter/surf_speed = 1.0
+shader_parameter/surf_angle = 1.57
+shader_parameter/surf_magnitude = 0.0
+shader_parameter/s11 = 2.221
+shader_parameter/sinpowder = 8.0
 
 [node name="world" type="Node2D"]
+
+[node name="drop_area" type="Node" parent="."]
+
+[node name="platform" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(564, 155)
+
+[node name="platform2" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(830, 160)
+
+[node name="platform3" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1076, 160)
+
+[node name="platform4" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1311, 160)
+
+[node name="platform5" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(565, 359)
+
+[node name="platform6" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(831, 364)
+
+[node name="platform7" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1077, 364)
+
+[node name="platform8" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1312, 364)
+
+[node name="platform9" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(565, 575)
+
+[node name="platform10" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(831, 580)
+
+[node name="platform11" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1077, 580)
+
+[node name="platform12" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1312, 580)
+
+[node name="platform13" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(566, 817)
+
+[node name="platform14" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(832, 822)
+
+[node name="platform15" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1078, 822)
+
+[node name="platform16" parent="drop_area" instance=ExtResource("2_ri4sp")]
+position = Vector2(1313, 822)
+
+[node name="cards" type="Node" parent="."]
+
+[node name="card01" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(232, 171)
+
+[node name="card02" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(232, 372)
+
+[node name="card03" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(232, 578)
+
+[node name="card04" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(232, 805)
+
+[node name="card05" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(1623, 172)
+
+[node name="card06" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(1623, 373)
+
+[node name="card07" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(1623, 579)
+
+[node name="card08" parent="cards" instance=ExtResource("1_lyp80")]
+z_index = 5
+position = Vector2(1623, 806)
+
+[node name="BackgroundSpace01_1" type="Sprite2D" parent="."]
+material = SubResource("ShaderMaterial_60a17")
+position = Vector2(954, 483)
+scale = Vector2(2.05859, 1.97461)
+texture = ExtResource("3_kx0dm")

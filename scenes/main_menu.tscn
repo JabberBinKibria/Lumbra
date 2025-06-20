@@ -1,8 +1,15 @@
-[gd_scene load_steps=5 format=3 uid="uid://b5usb058r08im"]
+[gd_scene load_steps=7 format=3 uid="uid://b5usb058r08im"]
 
 [ext_resource type="FontFile" uid="uid://bo1s2d1ywvpc1" path="res://assets/Fonts/bleeding_cowboys/Bleeding_Cowboys.ttf" id="1_44fvy"]
+[ext_resource type="Shader" path="res://scripts/main_menu.gdshader" id="1_wlv5d"]
 [ext_resource type="Script" path="res://scripts/how_to_play_btn.gd" id="3_11e77"]
 [ext_resource type="Script" path="res://scripts/START_Button.gd" id="3_eih4u"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_e8ki1"]
+shader = ExtResource("1_wlv5d")
+shader_parameter/radius = 0.685
+shader_parameter/speed = 1.562
+shader_parameter/effect_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_f63wr"]
 
@@ -11,7 +18,13 @@ position = Vector2(935, 455)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
+[node name="ColorRect2" type="ColorRect" parent="CanvasLayer"]
+offset_right = 1888.0
+offset_bottom = 977.0
+color = Color(0, 0, 0, 1)
+
 [node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+material = SubResource("ShaderMaterial_e8ki1")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0

@@ -1,0 +1,24 @@
+[gd_scene load_steps=4 format=3 uid="uid://b7si5hjti7bgd"]
+
+[ext_resource type="Texture2D" uid="uid://dqevs8dxjqbhn" path="res://dalle assets/DALL·E 2024-11-16 15.35.09 - Emitter.png" id="1_m5r88"]
+[ext_resource type="Script" path="res://scripts/card_01.gd" id="1_y6il8"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_inpdg"]
+size = Vector2(128, 128)
+
+[node name="card01" type="Node2D"]
+script = ExtResource("1_y6il8")
+
+[node name="emitter" type="Sprite2D" parent="."]
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_m5r88")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_inpdg")
+
+[connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]
+[connection signal="body_exited" from="Area2D" to="." method="_on_area_2d_body_exited"]
+[connection signal="mouse_entered" from="Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="Area2D" to="." method="_on_area_2d_mouse_exited"]
