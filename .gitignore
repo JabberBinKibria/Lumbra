@@ -1,0 +1,11 @@
+# Godot cache, rebuilt automatically
+.godot/
+
+# Exported builds
+build/
+*.exe
+*.pck
+
+# OS / editor clutter
+.DS_Store
+*.tmp
