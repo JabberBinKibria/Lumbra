@@ -123,7 +123,9 @@ func _score(tm: TurnManager, a: Dictionary) -> float:
 		if bad.is_empty():
 			break
 		for c in bad:
-			lost[b.remove_unit(c).faction] += 1
+			var gone := b.remove_unit(c)
+			if TurnManager.counts_as_loss(gone):
+				lost[gone.faction] += 1
 	return _eval(tm, f, o, r, lost[f], lost[o])
 
 func _eval(tm: TurnManager, f: int, o: int, r: LightEngine.Result, my_new_loss: int, their_new_loss: int) -> float:

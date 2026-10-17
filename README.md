@@ -50,7 +50,7 @@ You can't place a piece where it would be captured immediately — the move prev
 | **Mirror** | Light | 5 | Bends a beam 90°. Two orientations: `/` and `\`. |
 | **Prism** | Light | 3 | Facing *across* a beam: the beam goes straight on **and** branches off the way the Prism faces. Facing *along* a beam: it splits into both sideways directions. |
 | **Blocker** | Shadow | 5 | Stops beams and casts a shadow behind itself, up to the first lit square. |
-| **Veil** | Shadow | 5 | Darkens the 3×3 area around it (its own square included). Beams die as soon as they enter the darkness. |
+| **Veil** | Shadow | 5 | Darkens the 3×3 area around it (its own square included). Beams die as soon as they enter the darkness. Breaks when beams enter from two directions. |
 | **Corner emitter** | Neutral | — | Fires along both edges from its corner. Can't be moved, rotated or captured, and its beams pass straight through Veil darkness. |
 
 #### Light, shadow and dim squares
@@ -67,7 +67,7 @@ Only the **inner 6×6** squares count as territory. The outer ring is lit by the
 
 - **Light pieces** must stand on a lit square. If a move leaves one in the dark, it is captured.
 - A **Blocker** is captured when beams hit it from **two different sides** at once.
-- A **Veil** whose darkness touches a **centre square or a corner** is captured when beams enter its darkness from **two different directions**. Corner-emitter beams don't count. Other Veils can't be captured by beams.
+- A **Veil** breaks when beams enter its darkness from **two different directions**. Corner-emitter beams don't count. A broken Veil is removed but **doesn't count** as a lost piece.
 - Captures can chain: removing a Mirror can plunge more pieces into darkness. **Your own pieces can be captured by your own move.**
 
 Dashed violet bars on a Blocker or Veil show which sides have already been hit — one more side and it's gone.
@@ -76,7 +76,7 @@ Dashed violet bars on a Blocker or Veil show which sides have already been hit �
 
 Checked after every move, in this order:
 
-1. **Capture** — the other side has lost **5** pieces. (If both reach 5 on the same move, the player who moved loses.)
+1. **Capture** — the other side has lost **5** pieces. Broken Veils don't count. (If both reach 5 on the same move, the player who moved loses.)
 2. **Centre** — all four outlined centre squares (**D5, E5, D4, E4**) are your colour at the end of **3** of your turns in a row.
 3. **Territory** — **22** of the 36 inner squares are your colour.
 4. **Out of cards** — once both decks are empty, **6** more turns are played (3 each), then the side with more territory wins.
@@ -109,6 +109,7 @@ Fullscreen, screen effects (vignette and film grain), piece animations, sound ef
 - Watch the **preview hint** under your hand: it tells you what a move would capture before you commit.
 - A Mirror placed on the lit edge ring catches a corner beam and sends it into the board.
 - A single centre Veil can claim all four centre squares — Light needs beams from two directions to break it.
+- Breaking Veils doesn't win by capture, but it opens their darkness up for your territory.
 - Rotating is a full move. Sometimes turning one Mirror is worth more than placing a new piece.
 
 ---
@@ -187,7 +188,7 @@ The light is recomputed from scratch after every action, so there is no incremen
 
 | To change… | Edit |
 |---|---|
-| Decks, hand size, win conditions, turn limits | `scripts/core/rules.gd` |
+| Decks, hand size, win conditions, turn limits, whether broken Veils count as losses | `scripts/core/rules.gd` |
 | Colours, sizes, animation and handoff timings | `scripts/board/look.gd` |
 | Beam pulse speed and glow | uniforms in `shaders/beam.gdshader` |
 | Background, vignette, grain | `shaders/background.gdshader`, `shaders/post_fx.gdshader` |

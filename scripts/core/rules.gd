@@ -6,6 +6,7 @@ extends RefCounted
 const START_HAND := 3
 const MAX_HAND := 5
 const CAPTURE_LIMIT := 5     # units lost before a side is defeated
+const BROKEN_VEILS_COUNT := false  # do Veils broken by beams count toward CAPTURE_LIMIT?
 const TERRITORY_WIN := 22    # inner tiles of your element (60% of the inner 36; the edge ring doesn't count)
 const ZONE_TURNS := 3        # own turns holding every key tile
 const FINAL_TURNS := 6       # turns played after both decks are empty (3 each), then the tile count decides

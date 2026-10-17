@@ -1,7 +1,7 @@
 @tool
 class_name HitMarkerLayer
 extends Node2D
-## Dashed violet bars on each side a beam struck a Blocker or entered a capturable Veil's darkness.
+## Dashed violet bars on each side a beam struck a Blocker or entered a Veil's darkness.
 ## A second side means the piece is captured. Dashed and violet so they never read as beams.
 
 var result: LightEngine.Result
@@ -16,8 +16,7 @@ func _draw() -> void:
 	for bi in result.hits:
 		_mark_sides(bi, result.hits[bi], 0.5, 0.4)
 	for vi in result.veil_hits:
-		if LightEngine.veil_capturable(_cell(vi)):  # other Veils can't be captured by beams
-			_mark_sides(vi, result.veil_hits[vi], LightEngine.VEIL_RADIUS + 0.5, LightEngine.VEIL_RADIUS + 0.4)
+		_mark_sides(vi, result.veil_hits[vi], LightEngine.VEIL_RADIUS + 0.5, LightEngine.VEIL_RADIUS + 0.4)
 
 ## reach: centre-to-edge distance in cells; half_len: half the bar length in cells.
 func _mark_sides(i: int, dirs: Dictionary, reach: float, half_len: float) -> void:
