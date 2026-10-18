@@ -168,12 +168,13 @@ func _update_preview() -> void:
 			preview_hint = ""
 	_refresh()
 
-## e.g. "Captured: Shadow Blocker on E4, Light Mirror on C3."
+## e.g. "Captured: Shadow Blocker on E4, Shadow Veil on G4 (broken, doesn't count)."
 func _capture_text(caps: Array) -> String:
 	var parts: Array[String] = []
 	for e in caps:
 		var u: Unit = e[1]
-		parts.append("%s %s on %s" % [Unit.FACTION_NAMES[u.faction], Unit.NAMES[u.kind], BoardState.cell_name(e[0])])
+		var note := "" if TurnManager.counts_as_loss(u) else " (broken, doesn't count)"
+		parts.append("%s %s on %s%s" % [Unit.FACTION_NAMES[u.faction], Unit.NAMES[u.kind], BoardState.cell_name(e[0]), note])
 	return "Captured: %s." % ", ".join(parts)
 
 func _tiles(tile: int) -> int:

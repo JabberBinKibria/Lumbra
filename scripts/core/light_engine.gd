@@ -8,7 +8,7 @@ extends RefCounted
 ##  - A beam dies the moment it enters a tile inside a Veil's darkness zone (the full 3x3
 ##    around the Veil, including its own tile), and records
 ##    its direction against every Veil whose zone that tile belongs to.
-##    Exception: beams fired straight from a corner emitter pass through darkness.
+##    Exception: beams fired straight from a corner emitter pass through darkness (and record nothing).
 ##  - Empty tile: lit. Mirror / Prism: lit, beam re-emitted. Emitter / Veil: lit, beam ends.
 ##  - Blocker: beam ends (tile not lit), casts a shadow ray behind it, and records the
 ##    incoming direction. Beams from 2+ different directions shatter the Blocker.
@@ -18,7 +18,6 @@ extends RefCounted
 
 enum Tile { DIM, LIGHT, SHADOW }
 const VEIL_RADIUS := 1
-const CORNERS: Array[Vector2i] = [Vector2i(0, 0), Vector2i(BoardState.SIZE - 1, 0), Vector2i(0, BoardState.SIZE - 1), Vector2i(BoardState.SIZE - 1, BoardState.SIZE - 1)]
 
 class Result:
 	var lit := PackedByteArray()
@@ -139,8 +138,8 @@ static func compute(board: BoardState) -> Result:
 			r.state[i] = Tile.DIM
 	return r
 
-## Light units must stand on LIGHT tiles. Veils die on LIGHT tiles, or when their darkness
-## covers a centre key tile or a corner and beams enter it from two different directions.
+## Light units must stand on LIGHT tiles. Veils die on LIGHT tiles, or break when beams enter
+## their darkness from two different directions.
 ## Blockers die only when crushed by beams from two different directions.
 static func find_violations(board: BoardState, r: Result) -> Array[Vector2i]:
 	var out: Array[Vector2i] = []
@@ -157,18 +156,10 @@ static func find_violations(board: BoardState, r: Result) -> Array[Vector2i]:
 				out.append(cell)
 		elif t == Tile.LIGHT:
 			out.append(cell)
-		elif u.kind == Unit.Kind.VEIL and veil_capturable(cell):
+		elif u.kind == Unit.Kind.VEIL:
 			if r.veil_hits.get(board.idx(cell), {}).size() > 1:
 				out.append(cell)
 	return out
-
-## Only Veils whose darkness reaches a centre key tile or a corner can be captured by beams.
-static func veil_capturable(cell: Vector2i) -> bool:
-	for k in Rules.KEY_TILES + CORNERS:
-		var off: Vector2i = k - cell
-		if absi(off.x) <= VEIL_RADIUS and absi(off.y) <= VEIL_RADIUS:
-			return true
-	return false
 
 ## Territory: only the inner 6x6 counts. The edge ring is lit by the corner emitters from the start.
 static func count_tiles(r: Result, tile: int) -> int:

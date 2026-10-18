@@ -36,7 +36,7 @@ static func rules_text() -> String:
 	var keys := ", ".join(Rules.KEY_TILES.map(func(c): return BoardState.cell_name(c)))
 	return "\n".join([
 		"[b]How to win[/b]",
-		"• Capture: the other side loses %d units." % Rules.CAPTURE_LIMIT,
+		"• Capture: the other side loses %d units%s." % [Rules.CAPTURE_LIMIT, "" if Rules.BROKEN_VEILS_COUNT else " (broken Veils don't count)"],
 		"• Centre: all four outlined tiles (%s) are your colour for %d of your turns." % [keys, Rules.ZONE_TURNS],
 		"• Territory: %d of the %d inner tiles are your colour (the outer ring doesn't count)." % [Rules.TERRITORY_WIN, (BoardState.SIZE - 2) * (BoardState.SIZE - 2)],
 		"• Out of cards: once both decks are empty, %d more turns are played (%d each); then more tiles wins." % [Rules.FINAL_TURNS, int(Rules.FINAL_TURNS / 2.0)],
@@ -46,7 +46,7 @@ static func rules_text() -> String:
 		"",
 		"[b]Light[/b]  Emitter fires a beam · Mirror bends it · Prism splits it. Light units must stand on lit tiles or they are captured.",
 		"",
-		"[b]Shadow[/b]  Blocker stops beams and casts shadow behind it up to the first lit tile; beams hitting it from two different sides capture it. Veil darkens its 3x3 and beams die entering it (except corner emitter beams, which pass through); a Veil whose darkness touches the centre or a corner is captured when beams enter it from two different directions.",
+		"[b]Shadow[/b]  Blocker stops beams and casts shadow behind it up to the first lit tile; beams hitting it from two different sides capture it. Veil darkens its 3x3 and beams die entering it (except corner emitter beams, which pass through); beams entering its darkness from two different directions break it.",
 		"",
 		"Corner emitters are neutral and permanent. You can't place a unit where it would be captured instantly.",
 	])

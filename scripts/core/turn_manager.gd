@@ -149,9 +149,14 @@ func _resolve_board() -> Array:
 	var captured: Array = []
 	for e in s.removed:
 		var u: Unit = e[1]
-		losses[u.faction] += 1
+		if counts_as_loss(u):
+			losses[u.faction] += 1
 		captured.append(u)
 	return captured
+
+## Broken Veils don't count toward the capture limit unless Rules.BROKEN_VEILS_COUNT is set.
+static func counts_as_loss(u: Unit) -> bool:
+	return Rules.BROKEN_VEILS_COUNT or u.kind != Unit.Kind.VEIL
 
 ## Removes captured units until nothing else is captured (removing a Mirror can darken more units).
 ## Returns {result, removed: Array of [cell, Unit]}.
