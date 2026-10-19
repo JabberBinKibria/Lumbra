@@ -238,18 +238,5 @@ mkdir -p build && godot --headless --path . --export-release "Windows Desktop" b
 
 `build/` is ignored by git. The app icon is `icon.svg`. Saved options live in Godot's user folder (`user://settings.cfg`, e.g. `~/Library/Application Support/Godot/app_userdata/Lumbra/` on macOS).
 
-### Known limitations
-
-- Pass-and-play only — no AI opponent or online play yet.
-- Sounds are synthesized placeholders.
-- The web export is untested; the HDR glow may look flatter in browsers.
 
 ---
-
-## Credits
-
-Made by **Jabber Bin Kibria** with [Godot Engine](https://godotengine.org).
-
-## License
-
-No license has been chosen yet, so all rights are reserved by the author. Add a `LICENSE` file before accepting contributions.
